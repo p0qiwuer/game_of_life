@@ -2,10 +2,11 @@
 #include <cmath>
 #include <iostream> // temp
 
-GameBoard::GameBoard(QWidget* parent, const int default_grid_size, const QRect default_geometry)
-    : QFrame(parent), auto_advance_started(false), grid_size(0){ // setting initial grid size to 0, since there are no CellButtons to delete
+GameBoard::GameBoard(QWidget* parent, const int default_grid_size, const QRect default_geometry, const int default_timer_interval)
+    : QFrame(parent), auto_advance_started(false), grid_size(0), timer_interval(default_timer_interval){ // setting initial grid size to 0, since there are no CellButtons to delete
     setGeometry(default_geometry);
     initialise(default_grid_size);
+    connect(&auto_advance_timer, SIGNAL(timeout()), this, SLOT(slot_advance_one_step())); //When the QTimer objects timer expires, advance automatically
 }
 
 void GameBoard::initialise(int new_grid_size) {
@@ -56,6 +57,12 @@ void GameBoard::slot_advance_one_step() {
 
 void GameBoard::slot_start_auto_advance() {
     auto_advance_started = true;
+    auto_advance_timer.start(timer_interval);
+}
+
+void GameBoard::slot_stop_auto_advance() {
+    auto_advance_started = false;
+    auto_advance_timer.stop();
 }
 
 void GameBoard::slot_cell_button_clicked(int column, int row) {
