@@ -1,6 +1,6 @@
 # Game of Life
 
-A simple Game of Life interface using Qt.
+A simple C++ Game of Life interface using Qt.
 
 The state of the game can be advanced both frame by frame and automatically. The grid size of the program can be set as well as the time interval when advancing automatically.
 
