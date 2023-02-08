@@ -6,8 +6,9 @@ The state of the game can be advanced both frame by frame and automatically. The
 
 Qt library version 4 or above is required.
 
-The program has been tested on Linux with Qt version 5.15.8 and qmake 3.1
+The program has been tested on Linux with Qt version 5.15.8 and qmake 3.1.
+
 Compile with
 
-qmake && make
+```qmake && make```
 
